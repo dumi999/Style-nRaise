@@ -1,12 +1,81 @@
-.navbar-lewagon {
+/* Style the navbar */
+.navbar {
+  background-color: white;
+  padding: 10px;
+  display: flex;
   justify-content: space-between;
-  background: white;
+  align-items: center;
 }
 
-.navbar-lewagon .navbar-collapse {
-  flex-grow: 0;
+/* Style the dropdown button */
+.dropbtn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
 }
 
-.navbar-lewagon .navbar-brand img {
-  width: 40px;
+/* Style the dropdown content */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Style the links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change link color on hover */
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+/* Show dropdown content when hovering over dropdown */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Style the navbar elements */
+.navbar-elements {
+  display: flex;
+}
+
+/* Style the navbar links */
+.navbar a {
+  color: black;
+  text-decoration: none;
+  padding: 14px 20px;
+  display: inline-block;
+}
+
+/* Change link color on hover */
+.navbar a:hover {
+  background-color: #f1f1f1;
+}
+
+/* Style the title container */
+.title-container {
+  display: flex;
+  align-items: center; /* Align items vertically */
+}
+
+/* Style the title */
+.main-title {
+  font-family: "Indie Flower", cursive, sans-serif;
+  font-size: 24px;
+  margin: 0;
+  margin-left: 5px; /* Add some space between icon and title */
+}
+
+/* Style the icon */
+.fa-solid.fa-tag {
+  font-size: 25px;
+  color: #f50056;
 }
