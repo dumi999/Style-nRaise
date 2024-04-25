@@ -2,6 +2,8 @@
 .navbar {
   background-color: white;
   padding: 10px;
+  padding-right: 25px;
+  padding-left: 25px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -42,28 +44,11 @@
   display: block;
 }
 
-/* Style the navbar elements */
-.navbar-elements {
-  display: flex;
-}
-
-/* Style the navbar links */
-.navbar a {
-  color: black;
-  text-decoration: none;
-  padding: 14px 20px;
-  display: inline-block;
-}
-
-/* Change link color on hover */
-.navbar a:hover {
-  background-color: #f1f1f1;
-}
-
 /* Style the title container */
 .title-container {
   display: flex;
   align-items: center; /* Align items vertically */
+  margin-right: 10px; /* Less space between dropdown and title */
 }
 
 /* Style the title */
@@ -74,8 +59,34 @@
   margin-left: 5px; /* Add some space between icon and title */
 }
 
+/* Style the navbar elements */
+.navbar-elements {
+  display: flex;
+  align-items: center; /* Align items vertically */
+  margin-left: 30px; /* More space between dropdown and navbar elements */
+}
+
+/* Style the navbar links */
+.navbar a {
+  color: black;
+  text-decoration: none;
+  padding: 14px 20px;
+  display: inline-block;
+  font-size: small;
+}
+
+/* Change link color on hover */
+.navbar a:hover {
+  background-color: #f1f1f1;
+}
+
 /* Style the icon */
 .fa-solid.fa-tag {
   font-size: 25px;
   color: #f50056;
+}
+
+/* Style the shopping cart icon */
+.fa-solid.fa-cart-shopping {
+  font-size: 15px;
 }
