@@ -2,7 +2,7 @@
 .navbar {
   background-color: white;
   padding: 10px;
-  padding-right: 25px;
+  padding-right: 25px; /* Adjust padding to make space for the dropdown button */
   padding-left: 25px;
   display: flex;
   justify-content: space-between;
@@ -48,7 +48,6 @@
 .title-container {
   display: flex;
   align-items: center; /* Align items vertically */
-  margin-right: 10px; /* Less space between dropdown and title */
 }
 
 /* Style the title */
@@ -63,7 +62,6 @@
 .navbar-elements {
   display: flex;
   align-items: center; /* Align items vertically */
-  margin-left: 30px; /* More space between dropdown and navbar elements */
 }
 
 /* Style the navbar links */
