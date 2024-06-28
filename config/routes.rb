@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   get 'transactions', to: 'transactions#index'
 
   # Route for listing an item
-  get 'list_item', to: 'listed_items#form'
+  get 'list_item', to: 'listed_items#new'
 
   # Route for viewing items
   get 'my_items', to: 'listed_items#index'
