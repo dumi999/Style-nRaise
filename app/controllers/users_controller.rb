@@ -19,4 +19,10 @@ class UsersController < ApplicationController
 
   def destroy
   end
+
+  def my_account
+    @item = ListedItem.new
+    @items = ListedItem.all
+    @transactions = Transaction.all
+  end
 end
