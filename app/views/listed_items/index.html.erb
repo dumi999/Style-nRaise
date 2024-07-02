@@ -1,6 +1,6 @@
 <h1>My Items</h1>
 
-<% if @listed_items.any? %>
+<% if @listed_item.any? %>
   <table>
     <thead>
       <tr>
@@ -13,7 +13,7 @@
       </tr>
     </thead>
     <tbody>
-      <% @listed_items.each do |listed_item| %>
+      <% @listed_item.each do |listed_item| %>
         <tr>
           <td><%= listed_item.name %></td>
           <td><%= listed_item.description %></td>

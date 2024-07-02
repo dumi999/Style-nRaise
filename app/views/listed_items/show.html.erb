@@ -1,0 +1,12 @@
+<h1><%= @listed_item.name %></h1>
+
+<p><%= @listed_item.description %></p>
+
+<ul>
+  <li><%= link_to "Edit", edit_listed_item_path(@listed_item) %></li>
+  <li><%= link_to "Destroy", listed_item_path(@listed_item), data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  } %></li>
+  <li><%= link_to "Back to Listed Items", listed_items_path %></li>
+</ul>

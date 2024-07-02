@@ -1,55 +1,59 @@
 class ListedItemsController < ApplicationController
-  before_action :authenticate_user! # Ensure the user is authenticated
-  before_action :set_listed_item, only: [:edit, :update, :destroy]
+  before_action :authenticate_user!
 
-  # List all listed items
   def index
-    @listed_items = current_user.listed_items
+    @listed_item = ListedItem.all
   end
 
-  # Show a form to create a new listed item
+  def show
+    @listed_item = ListedItem.find_by(id: params[:id])
+
+    if @listed_item
+      # Listed item found, render show template
+    else
+      flash[:alert] = "No listed item found with ID #{params[:id]}"
+      redirect_to listed_items_path
+    end
+  end
+
   def new
     @listed_item = ListedItem.new
   end
 
-  # Create a new listed item
   def create
-    @listed_item = current_user.listed_items.build(listed_item_params)
+    @listed_item = current_user.listed_items.new(listed_item_params)
+
     if @listed_item.save
-      redirect_to my_account_path, notice: 'Item was successfully listed.'
+      redirect_to listed_items_path, notice: 'Listed item was successfully created.'
     else
-      render :new, alert: 'Failed to list item.'
+      render :new, status: :unprocessable_entity
     end
   end
 
-  # Show form to edit a listed item
   def edit
+    @listed_item = ListedItem.find(params[:id])
   end
 
-  # Update a listed item
   def update
+    @listed_item = ListedItem.find(params[:id])
+
     if @listed_item.update(listed_item_params)
-      redirect_to my_account_path, notice: 'Item was successfully updated.'
+      redirect_to @listed_item, notice: 'Listed item was successfully updated.'
     else
-      render :edit, alert: 'Failed to update item.'
+      render :edit, status: :unprocessable_entity
     end
   end
 
-  # Delete a listed item
   def destroy
+    @listed_item = ListedItem.find(params[:id])
     @listed_item.destroy
-    redirect_to my_account_path, notice: 'Item was successfully deleted.'
+
+    redirect_to listed_item_path, status: :see_other
   end
 
   private
 
-  # Set the listed item for edit, update, and destroy actions
-  def set_listed_item
-    @listed_item = current_user.listed_items.find(params[:id])
-  end
-
-  # Strong parameters for listed item creation and updating
   def listed_item_params
-    params.require(:listed_item).permit(:name, :description, :price, :brand, :category, :charity_id)
+    params.require(:listed_item).permit(:name, :description, :price, :brand, :category)
   end
 end

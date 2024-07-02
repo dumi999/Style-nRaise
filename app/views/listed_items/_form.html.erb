@@ -1,0 +1,49 @@
+<%= form_with(model: @listed_item, local: true) do |form| %>
+  <%# Display any validation errors above the form fields %>
+  <% if @listed_item.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@listed_item.errors.count, "error") %> prohibited this listed item from being saved:</h2>
+      <ul>
+        <% @listed_item.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+
+<div class="field">
+  <%= form.label :price %>
+  <%= form.text_field :price,
+                      placeholder: 'Set the auction value (minimum £5)',
+                      value: @listed_item.price.present? ? number_to_currency(@listed_item.price, unit: "£", precision: 2).gsub("£", "") : '',
+                      step: '0.01',
+                      min: '5.00',
+                      required: true %>
+</div>
+
+
+
+  <div class="field">
+    <%= form.label :brand %>
+    <%= form.text_field :brand %>
+  </div>
+
+  <div class="field">
+    <%= form.label :category %>
+    <%= form.text_field :category %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
