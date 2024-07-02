@@ -1,7 +1,10 @@
 class ListedItem < ApplicationRecord
   belongs_to :user
-  # belongs_to :charity, optional: true # Allow charity_id to be nil (commented out for clarity)
 
-  validates :name, :description, :price, :brand, :category, presence: true
-  validates :price, numericality: { only_float: true, greater_than_or_equal_to: 5.00 }
+  validates :name, presence: true
+  validates :description, presence: true
+  validates :starting_price, presence: true, numericality: { greater_than_or_equal_to: 5 }
+  validates :brand, presence: true
+  validates :category, presence: true
+  validates :end_time, presence: true
 end

@@ -1,28 +1,21 @@
 class ListedItemsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action :set_listed_item, only: [:show, :edit, :update, :destroy]
+  before_action :correct_user, only: [:edit, :update]
 
   def index
-    @listed_item = ListedItem.all
+    @listed_items = ListedItem.all
   end
 
   def show
-    @listed_item = ListedItem.find_by(id: params[:id])
-
-    if @listed_item
-      # Listed item found, render show template
-    else
-      flash[:alert] = "No listed item found with ID #{params[:id]}"
-      redirect_to listed_items_path
-    end
   end
 
   def new
-    @listed_item = ListedItem.new
+    @listed_item = current_user.listed_items.build
   end
 
   def create
-    @listed_item = current_user.listed_items.new(listed_item_params)
-
+    @listed_item = current_user.listed_items.build(listed_item_params)
     if @listed_item.save
       redirect_to listed_items_path, notice: 'Listed item was successfully created.'
     else
@@ -31,12 +24,9 @@ class ListedItemsController < ApplicationController
   end
 
   def edit
-    @listed_item = ListedItem.find(params[:id])
   end
 
   def update
-    @listed_item = ListedItem.find(params[:id])
-
     if @listed_item.update(listed_item_params)
       redirect_to @listed_item, notice: 'Listed item was successfully updated.'
     else
@@ -45,15 +35,30 @@ class ListedItemsController < ApplicationController
   end
 
   def destroy
-    @listed_item = ListedItem.find(params[:id])
     @listed_item.destroy
+    redirect_to listed_items_path, status: :see_other
+  end
 
-    redirect_to listed_item_path, status: :see_other
+  def my_items
+    @listed_items = current_user.listed_items
   end
 
   private
 
+  def set_listed_item
+    @listed_item = ListedItem.find_by(id: params[:id])
+    unless @listed_item
+      flash[:alert] = "No listed item found with ID #{params[:id]}"
+      redirect_to listed_items_path
+    end
+  end
+
+  def correct_user
+    @listed_item = current_user.listed_items.find_by(id: params[:id])
+    redirect_to listed_items_path, alert: 'Not authorized to edit this item' if @listed_item.nil?
+  end
+
   def listed_item_params
-    params.require(:listed_item).permit(:name, :description, :price, :brand, :category)
+    params.require(:listed_item).permit(:name, :description, :price, :brand, :category, :starting_price, :end_time)
   end
 end

@@ -1,25 +1,29 @@
 <h1>My Items</h1>
 
-<% if @listed_item.any? %>
+<% if @listed_items.any? %>
   <table>
     <thead>
       <tr>
         <th>Name</th>
         <th>Description</th>
-        <th>Price</th>
+        <th>Starting Price</th>
+        <th>Current Price</th>
         <th>Brand</th>
         <th>Category</th>
+        <th>End Time</th>
         <th>Actions</th>
       </tr>
     </thead>
     <tbody>
-      <% @listed_item.each do |listed_item| %>
+      <% @listed_items.each do |listed_item| %>
         <tr>
           <td><%= listed_item.name %></td>
           <td><%= listed_item.description %></td>
-          <td><%= number_to_currency(listed_item.price, unit: '£', precision: 2) %></td>
+          <td><%= number_to_currency(listed_item.starting_price, unit: '£', precision: 2) %></td>
+          <td><%= listed_item.price.present? ? number_to_currency(listed_item.price, unit: '£', precision: 2) : 'N/A' %></td>
           <td><%= listed_item.brand %></td>
           <td><%= listed_item.category %></td>
+          <td><%= listed_item.end_time.strftime('%Y-%m-%d %H:%M:%S') %></td>
           <td>
             <%= link_to 'Show', listed_item_path(listed_item), class: 'button' %>
             <%= link_to 'Edit', edit_listed_item_path(listed_item), class: 'button' %>
@@ -33,4 +37,4 @@
   <p>No listed items found.</p>
 <% end %>
 
-<%= link_to 'New Listed Item', list_item_path, class: 'button' %>
+<%= link_to 'New Listed Item', new_listed_item_path, class: 'button' %>

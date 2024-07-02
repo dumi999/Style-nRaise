@@ -1,0 +1,36 @@
+<h1>All Listed Items</h1>
+
+<% if @listed_items.any? %>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Starting Price</th>
+        <th>Current Price</th>
+        <th>Brand</th>
+        <th>Category</th>
+        <th>End Time</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @listed_items.each do |listed_item| %>
+        <tr>
+          <td><%= listed_item.name %></td>
+          <td><%= listed_item.description %></td>
+          <td><%= number_to_currency(listed_item.starting_price, unit: '£', precision: 2) %></td>
+          <td><%= listed_item.price.present? ? number_to_currency(listed_item.price, unit: '£', precision: 2) : 'N/A' %></td>
+          <td><%= listed_item.brand %></td>
+          <td><%= listed_item.category %></td>
+          <td><%= listed_item.end_time.strftime('%Y-%m-%d %H:%M:%S') %></td>
+          <td>
+            <%= link_to 'Show', listed_item_path(listed_item), class: 'button' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>No listed items found.</p>
+<% end %>

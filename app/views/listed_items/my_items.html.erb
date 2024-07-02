@@ -1,0 +1,13 @@
+<h1>My Listed Items</h1>
+<% @listed_items.each do |item| %>
+  <div>
+    <h2><%= link_to item.name, item %></h2>
+    <p><%= item.description %></p>
+    <p>Starting Price: <%= item.starting_price %></p>
+    <p>Ends at: <%= item.end_time %></p>
+    <p>
+      <%= link_to 'Edit', edit_listed_item_path(item) %> |
+      <%= link_to 'Delete', listed_item_path(item), method: :delete, data: { confirm: 'Are you sure?' } %>
+    </p>
+  </div>
+<% end %>

@@ -1,0 +1,66 @@
+# Query: helper
+# ContextLines: 1
+
+14 results - 13 files
+
+app/helpers/application_helper.rb:
+  1: module ApplicationHelper
+  def category_options
+    ['Jeans', 'Shorts', 'Blouse', 'T-shirt', 'Dress', 'Skirt', 'Sweater', 'Jacket', 'Accessories', 'Shoes']
+  end
+  2  end
+
+config/application.rb:
+  13        generate.assets false
+  14:       generate.helper false
+  15        generate.test_framework :test_unit, fixture: false
+
+config/initializers/simple_form_bootstrap.rb:
+  33  
+  34:   # CSS class to add for error notification helper.
+  35    config.error_notification_class = 'alert alert-danger'
+
+config/initializers/simple_form.rb:
+  83  
+  84:   # Default tag used for error notification helper.
+  85    config.error_notification_tag = :div
+  86  
+  87:   # CSS class to add for error notification helper.
+  88    config.error_notification_class = 'error_notification'
+
+test/application_system_test_case.rb:
+  1: require "test_helper"
+  2  
+
+test/test_helper.rb:
+  12  
+  13:     # Add more helper methods to be used by all tests here...
+  14    end
+
+test/channels/application_cable/connection_test.rb:
+  1: require "test_helper"
+  2  
+
+test/controllers/listed_items_controller_test.rb:
+  1: require "test_helper"
+  2  
+
+test/controllers/users_controller_test.rb:
+  1: require "test_helper"
+  2  
+
+test/models/charity_test.rb:
+  1: require "test_helper"
+  2  
+
+test/models/listed_item_test.rb:
+  1: require "test_helper"
+  2  
+
+test/models/transaction_test.rb:
+  1: require "test_helper"
+  2  
+
+test/models/user_test.rb:
+  1: require "test_helper"
+  2  
