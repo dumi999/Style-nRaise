@@ -4,7 +4,7 @@ class ListedItemsController < ApplicationController
   before_action :correct_user, only: [:edit, :update]
 
   def index
-    @listed_items = ListedItem.all
+    @listed_items = ListedItem.where.not(user_id: current_user.id)
   end
 
   def show
@@ -59,6 +59,6 @@ class ListedItemsController < ApplicationController
   end
 
   def listed_item_params
-    params.require(:listed_item).permit(:name, :description, :price, :brand, :category, :starting_price, :end_time)
+    params.require(:listed_item).permit(:name, :description, :price, :brand, :category, :starting_price, :end_time, :photo)
   end
 end

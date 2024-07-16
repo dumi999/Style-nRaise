@@ -1,9 +1,10 @@
-<h1>My Items</h1>
+<h1>All Items</h1>
 
 <% if @listed_items.any? %>
   <table>
     <thead>
       <tr>
+        <th>Photo</th>
         <th>Name</th>
         <th>Description</th>
         <th>Starting Price</th>
@@ -17,6 +18,13 @@
     <tbody>
       <% @listed_items.each do |listed_item| %>
         <tr>
+          <td>
+            <% if listed_item.photo.attached? %>
+              <%= image_tag listed_item.photo, size: "100x100" %>
+            <% else %>
+              No image available
+            <% end %>
+          </td>
           <td><%= listed_item.name %></td>
           <td><%= listed_item.description %></td>
           <td><%= number_to_currency(listed_item.starting_price, unit: '£', precision: 2) %></td>
